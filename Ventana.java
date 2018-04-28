@@ -7,15 +7,15 @@ import javax.swing.JOptionPane;
 public class Ventana extends JFrame{
 
 	private JPanel panelForma, panelMembresia;
-	private JLabel lNombreUsuario,lTipoMembresia,lMembresia;
+	private JLabel lNombreUsuario,lTipoMembresia,lMembresia,lPosicion;
 	private JButton bGuardar,bGuardarArchivo,bCargarArchivo;
 	private JFileChooser fileChooser;
-	private JTextField tNombreUsuario,tTipoMembresia;
-	//private Membresia[] membresias;
+	private JTextField tNombreUsuario,tTipoMembresia,tPosicion;
+	private Membresia[] membresias;
 
 
 	public Ventana(){
-		//listaMiembro= new ListaMiembro();
+		membresias = new Membresia[100];
 		setSize(500,500);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Lista de Membresias");
@@ -36,19 +36,23 @@ public class Ventana extends JFrame{
 		tNombreUsuario= new JTextField();
 		lTipoMembresia= new JLabel("Tipo de membresia");
 		tTipoMembresia= new JTextField();
+		lPosicion= new JLabel("Ingrese la posicion");
+		tPosicion= new JTextField();
 
 		bGuardar= new JButton("Guardar");
-		//bGuardar.addActionListener(new BotonListener());
+		bGuardar.addActionListener(new BotonListener());
 		bGuardarArchivo= new JButton("Guardar archivo");
-		//bGuardarArchivo.addActionListener(new BotonSaveFileListener());
+		bGuardarArchivo.addActionListener(new BotonSaveFileListener());
 		bCargarArchivo= new JButton("Cargar archivo");
-		//bCargarArchivo.addActionListener(new BotonLoadListener());
+		bCargarArchivo.addActionListener(new BotonLoadListener());
 
 
 		panelForma.add(lNombreUsuario);
 		panelForma.add(tNombreUsuario);
 		panelForma.add(lTipoMembresia);
 		panelForma.add(tTipoMembresia);
+		panelForma.add(lPosicion);
+		panelForma.add(tPosicion);
 		panelForma.add(new JLabel());
 
 		panelForma.add(bGuardar);
@@ -61,22 +65,25 @@ public class Ventana extends JFrame{
 		panelMembresia.add(lMembresia);
 		add(panelForma);
 		add(panelMembresia);
-		//imprimeAgenda();
+		imprimeMembresias();
 	}
 
-	/*
 	public class BotonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			String nombre= tNombre.getText();
-			String direccion= tDireccion.getText();
-			String telefono= tTelefono.getText();
-			Contacto c= new Contacto(nombre,direccion,telefono);
-			int pos= Integer.parseInt(tPos.getText());
-			agenda.addContacto(c,pos);
-			imprimeAgenda();
+			String tipoMembresia= tTipoMembresia.getText();
+			if(tipo.equals("B")){
+				Membresia membresias = new MembresiaBlack(tNombreUsuario.getText());
+				int pos = Integer.parseInt(tPosicion.getText());
+				membresias[pos] = membresias;
+			} else if(tipo.equals("G")){
+				Membresia membresias = new MembresiaGold(tNombreUsuario.getText());
+				int pos = Integer.parseInt(tPosicion.getText());
+				membresias[pos] = membresias;
+			}
+			imprimeMembresias();
+			
 		}
 	}
-
 	public class BotonSaveFileListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			try{
@@ -84,18 +91,15 @@ public class Ventana extends JFrame{
 				String fileName=pane.showInputDialog("¿Cuál es el nombre del archivo?");
 				FileOutputStream fout = new FileOutputStream(fileName);
 				ObjectOutputStream oos = new ObjectOutputStream(fout);
-				oos.writeObject(agenda);
+				oos.writeObject(membresias);
 				oos.close();				
 			}catch(FileNotFoundException ex){
 				ex.printStackTrace();
 			}catch(IOException ex){
 				ex.printStackTrace();
 			}
-
-
 		}
 	}
-
 	public class BotonLoadListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			fileChooser= new JFileChooser();
@@ -104,8 +108,8 @@ public class Ventana extends JFrame{
 				File selectedFile = fileChooser.getSelectedFile();
 				FileInputStream fin = new FileInputStream(selectedFile);
 				ObjectInputStream ois = new ObjectInputStream(fin);
-				agenda= (Agenda)ois.readObject();
-				imprimeAgenda();
+				membresias= (Membresia)ois.readObject();
+				imprimeMembresias();
 			}catch(FileNotFoundException ex){
 				System.out.println("Aun no hay archivo");
 			}catch(IOException ex){
@@ -115,38 +119,19 @@ public class Ventana extends JFrame{
 			}			
 		}
 	}
-
 	public void imprimeAgenda(){
-		String agendaString="<html>";
-		for(int i=0;i<agenda.getContactos().length;i++){
+		String membresiasString="<html>";
+		for(int i=0;i<membresias.length;i++){
 			try{
-				agendaString= agendaString+i+".- "+
-				agenda.getContactos()[i].getNombre()+" "
-				+agenda.getContactos()[i].getTelefono()+"<br/>";
+				membresiasString= membresiasString+i+".- "+membresias[i].getNombre()+" "+"<br/>";
 			}catch(NullPointerException e){
-				agendaString=agendaString+i+".- Vacío <br/>";
+				membresiasString=membresiasString+i+".- Vacío <br/>";
 			}
 		}
-		agendaString=agendaString+"</html>";
-		lAgenda.setText(agendaString);
+		membresiasString=membresiasString+"</html>";
+		lMembresia.setText(membresiasString);
 	}
-	*/
 
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
