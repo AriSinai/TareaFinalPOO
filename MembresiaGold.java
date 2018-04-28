@@ -1,6 +1,6 @@
 public class MembresiaGold extends Membresia{
 	
-	public MembresiaBlack(String nombre){
+	public MembresiaGold(String nombre){
 		super(nombre);
 	}
 
