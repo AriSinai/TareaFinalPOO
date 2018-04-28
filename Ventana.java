@@ -12,6 +12,7 @@ public class Ventana extends JFrame{
 	private JFileChooser fileChooser;
 	private JTextField tNombreUsuario,tTipoMembresia,tPosicion;
 	private Membresia[] membresias;
+	private int counter=0;
 
 
 	public Ventana(){
@@ -73,13 +74,14 @@ public class Ventana extends JFrame{
 			String tipoMembresia= tTipoMembresia.getText();
 			if(tipoMembresia.equals("B")){
 				Membresia m = new MembresiaBlack(tNombreUsuario.getText());
-				int pos = Integer.parseInt(tPosicion.getText());
-				membresias[pos] = m;
+				//int pos = Integer.parseInt(tPosicion.getText());
+				membresias[counter] = m;
 			} else if(tipoMembresia.equals("G")){
 				Membresia m = new MembresiaGold(tNombreUsuario.getText());
-				int pos = Integer.parseInt(tPosicion.getText());
-				membresias[pos] = m;
+				//int pos = Integer.parseInt(tPosicion.getText());
+				membresias[counter] = m;
 			}
+			counter++;
 			imprimeMembresias();
 			
 		}
