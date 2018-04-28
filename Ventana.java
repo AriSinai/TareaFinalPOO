@@ -71,14 +71,14 @@ public class Ventana extends JFrame{
 	public class BotonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 			String tipoMembresia= tTipoMembresia.getText();
-			if(tipo.equals("B")){
-				Membresia membresias = new MembresiaBlack(tNombreUsuario.getText());
+			if(tipoMembresia.equals("B")){
+				Membresia m = new MembresiaBlack(tNombreUsuario.getText());
 				int pos = Integer.parseInt(tPosicion.getText());
-				membresias[pos] = membresias;
-			} else if(tipo.equals("G")){
-				Membresia membresias = new MembresiaGold(tNombreUsuario.getText());
+				membresias[pos] = m;
+			} else if(tipoMembresia.equals("G")){
+				Membresia m = new MembresiaGold(tNombreUsuario.getText());
 				int pos = Integer.parseInt(tPosicion.getText());
-				membresias[pos] = membresias;
+				membresias[pos] = m;
 			}
 			imprimeMembresias();
 			
@@ -108,7 +108,7 @@ public class Ventana extends JFrame{
 				File selectedFile = fileChooser.getSelectedFile();
 				FileInputStream fin = new FileInputStream(selectedFile);
 				ObjectInputStream ois = new ObjectInputStream(fin);
-				membresias= (Membresia)ois.readObject();
+				membresias=(Membresia[])ois.readObject();
 				imprimeMembresias();
 			}catch(FileNotFoundException ex){
 				System.out.println("Aun no hay archivo");
@@ -119,7 +119,7 @@ public class Ventana extends JFrame{
 			}			
 		}
 	}
-	public void imprimeAgenda(){
+	public void imprimeMembresias(){
 		String membresiasString="<html>";
 		for(int i=0;i<membresias.length;i++){
 			try{
