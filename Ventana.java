@@ -121,8 +121,7 @@ public class Ventana extends JFrame{
 		String membresiasString="<html>";
 		for(int i=0;i<membresias.length;i++){
 			try{
-				//Aqui antes de el <br/> tiene que estar lo de get class o eso para que te diga la clase de donde lo esta sacando
-				membresiasString= membresiasString+i+".- "+membresias[i].getNombre()+" "+"<br/>";
+				membresiasString= membresiasString+i+".- "+membresias[i].getNombre()+" "+membresias[i].getClass().getSimpleName()+"<br/>";
 			}catch(NullPointerException e){
 				membresiasString=membresiasString+i+".- Vacío <br/>";
 			}
