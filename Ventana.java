@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 public class Ventana extends JFrame{
 
 	private JPanel panelForma, panelMembresia;
-	private JLabel lNombreUsuario,lTipoMembresia,lMembresia,lPosicion;
+	private JLabel lNombreUsuario,lTipoMembresia,lMembresia;
 	private JButton bGuardar,bGuardarArchivo,bCargarArchivo;
 	private JFileChooser fileChooser;
 	private JTextField tNombreUsuario,tTipoMembresia,tPosicion;
@@ -37,8 +37,6 @@ public class Ventana extends JFrame{
 		tNombreUsuario= new JTextField();
 		lTipoMembresia= new JLabel("Tipo de membresia");
 		tTipoMembresia= new JTextField();
-		lPosicion= new JLabel("Ingrese la posicion");
-		tPosicion= new JTextField();
 
 		bGuardar= new JButton("Guardar");
 		bGuardar.addActionListener(new BotonListener());
@@ -52,8 +50,6 @@ public class Ventana extends JFrame{
 		panelForma.add(tNombreUsuario);
 		panelForma.add(lTipoMembresia);
 		panelForma.add(tTipoMembresia);
-		panelForma.add(lPosicion);
-		panelForma.add(tPosicion);
 		panelForma.add(new JLabel());
 
 		panelForma.add(bGuardar);
