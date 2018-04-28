@@ -1,10 +1,9 @@
 public class Membresia{
 	
-
 	private String nombre;
 
 
-	public Membresia(){
+	public Membresia(String nombre){
 		this.nombre=nombre;
 		
 	}
